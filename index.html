@@ -79,8 +79,20 @@ let messages = [
   "Happy Birthday, Momo baby ❤️ I love you today, tomorrow, and always."
 ];
 
-// Images to cycle through
-let images = ["momo_baby.png", "cat1.jpg", "cat2.jpg", "cat3.jpg"];
+// Images corresponding to certain messages (null = no image)
+let images = [
+  null,                // 10
+  "cat1.jpg",          // 9
+  "cat2.jpg",          // 8
+  "cat3.jpg",          // 7
+  null,                // 6
+  "cat1.jpg",          // 5
+  "cat2.jpg",          // 4
+  "cat3.jpg",          // 3
+  null,                // 2
+  "momo_baby.png",     // 1
+  "momo_baby.png"      // Final birthday message
+];
 
 let index = 0;
 
@@ -92,13 +104,16 @@ function nextMessage(){
     msgDiv.innerHTML = messages[index];
     setTimeout(() => { msgDiv.style.opacity = 1; }, 50);
 
-    // Show image with fade-in, cycling through the images
+    // Show image only if it exists
     let img = document.getElementById("image");
-    let currentImage = images[index % images.length];
-    img.src = currentImage;
-    img.style.display = "block";
-    img.style.opacity = 0;
-    setTimeout(() => { img.style.opacity = 1; }, 50);
+    if(images[index]){
+      img.src = images[index];
+      img.style.display = "block";
+      img.style.opacity = 0;
+      setTimeout(() => { img.style.opacity = 1; }, 50);
+    } else {
+      img.style.display = "none";
+    }
 
     index++;
 
