@@ -10,7 +10,12 @@ body {
   padding: 40px;
   color: #333;
 }
-h1 { font-size: 48px; color: #e91e63; }
+
+h1 { 
+  font-size: 48px; 
+  color: #e91e63; 
+}
+
 button {
   padding: 15px 30px;
   font-size: 18px;
@@ -20,29 +25,40 @@ button {
   border-radius: 8px;
   cursor: pointer;
   margin-top: 20px;
+  transition: background 0.3s;
 }
+
+button:hover {
+  background: #d81b60;
+}
+
 #message {
   margin-top: 30px;
   font-size: 24px;
   max-width: 700px;
   margin-left: auto;
   margin-right: auto;
+  opacity: 0;
+  transition: opacity 1s;
 }
+
 #image {
   margin-top: 20px;
   max-width: 400px;
   border-radius: 15px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.3);
   display: none;
+  opacity: 0;
+  transition: opacity 1s;
 }
 </style>
 </head>
 <body>
 
 <h1>Happy Birthday, My Love ❤️</h1>
-<p>Click to reveal a special countdown…</p>
+<p>Click the "Next" button to see why I love you…</p>
 
-<button onclick="nextMessage()">Reveal Next</button>
+<button id="nextBtn" onclick="nextMessage()">Next</button>
 
 <div id="message"></div>
 <img id="image" src="">
@@ -68,13 +84,27 @@ let index = 0;
 function nextMessage(){
   if(index < messages.length){
     let msgObj = messages[index];
-    document.getElementById("message").innerHTML = msgObj.text;
+    
+    // Fade in message
+    let msgDiv = document.getElementById("message");
+    msgDiv.style.opacity = 0;
+    msgDiv.innerHTML = msgObj.text;
+    setTimeout(() => { msgDiv.style.opacity = 1; }, 50);
 
+    // Fade in image
     let img = document.getElementById("image");
-    img.src = msgObj.img;
     img.style.display = "block";
+    img.style.opacity = 0;
+    img.src = msgObj.img;
+    setTimeout(() => { img.style.opacity = 1; }, 50);
 
     index++;
+
+    // If last message, disable button
+    if(index === messages.length){
+      document.getElementById("nextBtn").disabled = true;
+      document.getElementById("nextBtn").innerText = "All done ❤️";
+    }
   }
 }
 </script>
