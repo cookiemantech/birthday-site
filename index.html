@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Happy Birthday ❤️</title>
+<title>Happy Birthday, Momo Baby ❤️</title>
 <style>
 body {
   font-family: Arial, sans-serif;
@@ -55,7 +55,7 @@ button:hover {
 </head>
 <body>
 
-<h1>Happy Birthday, My Love ❤️</h1>
+<h1>Happy Birthday, Momo Baby ❤️</h1>
 <p>Click the "Next" button to see why I love you…</p>
 
 <button id="nextBtn" onclick="nextMessage()">Next</button>
@@ -80,18 +80,19 @@ let messages = [
 ];
 
 // Images to cycle through
-let images = ["image.jpg", "cat1.jpg", "cat2.jpg", "cat3.jpg"];
+let images = ["momo_baby.png", "cat1.jpg", "cat2.jpg", "cat3.jpg"];
 
 let index = 0;
 
 function nextMessage(){
   if(index < messages.length){
+    // Show message with fade-in
     let msgDiv = document.getElementById("message");
     msgDiv.style.opacity = 0;
     msgDiv.innerHTML = messages[index];
     setTimeout(() => { msgDiv.style.opacity = 1; }, 50);
 
-    // Cycle images
+    // Show image with fade-in, cycling through the 4 images
     let img = document.getElementById("image");
     let currentImage = images[index % images.length];
     img.src = currentImage;
