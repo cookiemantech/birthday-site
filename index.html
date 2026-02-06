@@ -1,135 +1,64 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Birthday Surprise ❤️</title>
+<title>Happy Birthday Momo Baby ❤️</title>
 <style>
-body{
+body {
   margin:0;
   font-family:'Segoe UI',sans-serif;
-  background:linear-gradient(120deg,#ff9a9e,#fad0c4);
+  background: linear-gradient(120deg,#ff9a9e,#fad0c4);
   text-align:center;
   color:white;
   overflow:hidden;
 }
 
-.screen{
-  position:absolute;
+#container {
+  position:relative;
   width:100%;
-  height:100%;
+  height:100vh;
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  opacity:0;
-  transition:all 1s ease;
 }
 
-.active{
-  opacity:1;
-  z-index:10;
-}
-
-img{
-  max-width:320px;
-  border-radius:22px;
-  box-shadow:0 12px 35px rgba(0,0,0,0.3);
+img {
+  max-width:350px;
+  border-radius:20px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.3);
   animation:float 4s infinite ease-in-out;
 }
 
-@keyframes float{
-  0%{transform:translateY(0);}
-  50%{transform:translateY(-15px);}
-  100%{transform:translateY(0);}
+@keyframes float {
+  0% { transform:translateY(0);}
+  50% { transform:translateY(-15px);}
+  100% { transform:translateY(0);}
 }
 
-.message{
+.message {
   font-size:26px;
   max-width:700px;
-  margin-top:20px;
-  animation:fadeUp 1s;
+  margin-top:25px;
+  opacity:0;
+  animation:fadeIn 1.5s forwards;
 }
 
-@keyframes fadeUp{
-  from{opacity:0; transform:translateY(30px);}
-  to{opacity:1; transform:translateY(0);}
+@keyframes fadeIn {
+  to { opacity:1;}
 }
 
-#finalText{
+#finalImg {
+  max-width:350px;
+  border-radius:20px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.3);
+  margin-top:30px;
+  display:none;
+  animation:float 4s infinite ease-in-out;
+}
+
+#finalText {
   font-size:40px;
-  margin-bottom:20px;
+  margin-top:25px;
+  display:none;
   animation:glow 2s ease-in-out infinite alternate;
 }
-
-@keyframes glow{
-  from{text-shadow:0 0 5px #fff;}
-  to{text-shadow:0 0 20px #fff9c4;}
-}
-
-button{
-  margin-top:25px;
-  padding:14px 30px;
-  font-size:18px;
-  border:none;
-  border-radius:30px;
-  background:#ff4d88;
-  color:white;
-  cursor:pointer;
-  box-shadow:0 6px 18px rgba(0,0,0,0.35);
-}
-</style>
-</head>
-<body>
-
-<!-- First Screen -->
-<div id="screen1" class="screen active">
-  <h1>For Momo Baby ❤️</h1>
-  <img src="image.jpg">
-  <div id="firstMessage" class="message">Momo Baby, today is a very special day...</div>
-  <button onclick="startStory()">Next</button>
-</div>
-
-<!-- Story Screen -->
-<div id="screen2" class="screen">
-  <img src="image.jpg">
-  <div id="storyMsg" class="message"></div>
-</div>
-
-<!-- Final Screen -->
-<div id="screen3" class="screen">
-  <div id="finalText">Happy Birthday Momo Baby ❤️</div>
-  <img src="cat1.jpg">
-</div>
-
-<script>
-let storyMessages = [
-  "The world became brighter the day you were born.",
-  "You make my life happier in ways I cannot describe.",
-  "And I feel lucky every single day to have you."
-];
-
-let index = 0;
-
-function startStory(){
-  document.getElementById("screen1").classList.remove("active");
-  document.getElementById("screen2").classList.add("active");
-  showNextMessage();
-}
-
-function showNextMessage(){
-  if(index < storyMessages.length){
-    let msgDiv = document.getElementById("storyMsg");
-    msgDiv.innerHTML = storyMessages[index];
-    msgDiv.classList.remove("message"); // reset animation
-    void msgDiv.offsetWidth; // trigger reflow
-    msgDiv.classList.add("message");
-    index++;
-    setTimeout(showNextMessage, 2500); // show next after 2.5s
-  } else {
-    document.getElementById("screen2").classList.remove("active");
-    document.getElementById("screen3").classList.add("active");
-  }
-}
-</script>
-
-</body>
-</html>
