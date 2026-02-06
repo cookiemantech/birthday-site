@@ -1,64 +1,152 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+<meta charset="UTF-8">
 <title>Happy Birthday Momo Baby ❤️</title>
 <style>
-body {
-  margin:0;
-  font-family:'Segoe UI',sans-serif;
-  background: linear-gradient(120deg,#ff9a9e,#fad0c4);
-  text-align:center;
-  color:white;
-  overflow:hidden;
+  body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(120deg, #ff9a9e, #fad0c4);
+    text-align: center;
+    color: white;
+    overflow: hidden;
+  }
+
+  #container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  img {
+    max-width: 350px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    animation: float 4s infinite ease-in-out;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0); }
+  }
+
+  .message {
+    font-size: 24px;
+    max-width: 700px;
+    margin-top: 25px;
+    opacity: 0;
+    animation: fadeIn 1.5s forwards;
+  }
+
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+
+  #finalImg {
+    max-width: 350px;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    margin-top: 30px;
+    display: none;
+    animation: float 4s infinite ease-in-out;
+  }
+
+  #finalText {
+    font-size: 42px;
+    margin-top: 25px;
+    display: none;
+    animation: glow 2s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow {
+    from { text-shadow: 0 0 5px #fff; }
+    to { text-shadow: 0 0 20px #fff9c4; }
+  }
+
+  /* Sparkle effect */
+  .sparkle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.8;
+    pointer-events: none;
+    animation: sparkleAnim 2s linear infinite;
+  }
+
+  @keyframes sparkleAnim {
+    0% { transform: translateY(0) scale(1); opacity: 1; }
+    100% { transform: translateY(-200px) scale(0); opacity: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div id="container">
+  <h1>For Momo Baby ❤️</h1>
+  <img src="image.jpg" id="mainImg">
+  <div id="messageDiv" class="message">Momo Baby, today is a very special day...</div>
+  <div id="finalText">Happy Birthday Momo Baby ❤️</div>
+  <img src="cat1.jpg" id="finalImg">
+</div>
+
+<script>
+let messages = [
+  "The world became brighter the day you were born.",
+  "You make my life happier in ways I cannot describe.",
+  "Your smile melts my heart every single time.",
+  "You are my safe place and my greatest adventure.",
+  "Your kindness inspires me to be a better person.",
+  "I love the way you laugh at my silly jokes.",
+  "You make ordinary moments feel magical.",
+  "Your love gives me strength every day.",
+  "I cherish every moment we spend together.",
+  "Simply put, I love you more than words can say."
+];
+
+let msgIndex = 0;
+
+function showNextMessage() {
+  let msgDiv = document.getElementById("messageDiv");
+  if(msgIndex < messages.length) {
+    msgDiv.innerHTML = messages[msgIndex];
+    msgDiv.style.opacity = 0;
+    void msgDiv.offsetWidth; // restart animation
+    msgDiv.style.animation = "fadeIn 1.5s forwards";
+    msgIndex++;
+    setTimeout(showNextMessage, 3000);
+  } else {
+    document.getElementById("mainImg").style.display = "none";
+    msgDiv.style.display = "none";
+    document.getElementById("finalText").style.display = "block";
+    document.getElementById("finalImg").style.display = "block";
+    createSparkles(30);
+  }
 }
 
-#container {
-  position:relative;
-  width:100%;
-  height:100vh;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
+// Sparkles effect
+function createSparkles(count) {
+  for(let i=0; i<count; i++){
+    let sparkle = document.createElement('div');
+    sparkle.className = 'sparkle';
+    sparkle.style.left = Math.random() * window.innerWidth + 'px';
+    sparkle.style.top = Math.random() * window.innerHeight + 'px';
+    sparkle.style.animationDuration = (Math.random() * 2 + 1) + 's';
+    document.body.appendChild(sparkle);
+  }
 }
 
-img {
-  max-width:350px;
-  border-radius:20px;
-  box-shadow:0 10px 25px rgba(0,0,0,0.3);
-  animation:float 4s infinite ease-in-out;
-}
+window.onload = function() {
+  setTimeout(showNextMessage, 2500);
+};
+</script>
 
-@keyframes float {
-  0% { transform:translateY(0);}
-  50% { transform:translateY(-15px);}
-  100% { transform:translateY(0);}
-}
-
-.message {
-  font-size:26px;
-  max-width:700px;
-  margin-top:25px;
-  opacity:0;
-  animation:fadeIn 1.5s forwards;
-}
-
-@keyframes fadeIn {
-  to { opacity:1;}
-}
-
-#finalImg {
-  max-width:350px;
-  border-radius:20px;
-  box-shadow:0 10px 25px rgba(0,0,0,0.3);
-  margin-top:30px;
-  display:none;
-  animation:float 4s infinite ease-in-out;
-}
-
-#finalText {
-  font-size:40px;
-  margin-top:25px;
-  display:none;
-  animation:glow 2s ease-in-out infinite alternate;
-}
+</body>
+</html>
