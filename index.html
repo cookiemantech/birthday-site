@@ -57,12 +57,14 @@ button{
 
 h1{
   font-size:50px;
+  margin-bottom:20px;
 }
 
 .message{
   font-size:26px;
   max-width:700px;
   padding:20px;
+  margin-top:20px;
   animation:fadeUp 1s;
 }
 
@@ -79,16 +81,17 @@ h1{
 <div id="screen1" class="screen active">
   <h1>For Momo Baby ❤️</h1>
   <img src="image.jpg">
-  <button onclick="start()">Open</button>
+  <div id="msg1" class="message">Momo Baby, today is a very special day...</div>
+  <button onclick="start()">Next</button>
 </div>
 
-<!-- Messages -->
+<!-- Messages Screen -->
 <div id="screen2" class="screen">
-  <div id="msg" class="message"></div>
+  <div id="msg2" class="message"></div>
   <button onclick="nextMsg()">Next</button>
 </div>
 
-<!-- Final -->
+<!-- Final Screen -->
 <div id="screen3" class="screen">
   <h1>Happy Birthday Momo Baby ❤️</h1>
   <img src="cat1.jpg">
@@ -96,7 +99,6 @@ h1{
 
 <script>
 let messages = [
-"Momo Baby, today is a very special day...",
 "The world became brighter the day you were born.",
 "You make my life happier in ways I cannot describe.",
 "And I feel lucky every single day to have you."
@@ -107,12 +109,14 @@ let index = 0;
 function start(){
   document.getElementById("screen1").classList.remove("active");
   document.getElementById("screen2").classList.add("active");
-  nextMsg();
+  // show first message automatically
+  document.getElementById("msg2").innerHTML = messages[index];
+  index++;
 }
 
 function nextMsg(){
   if(index < messages.length){
-    document.getElementById("msg").innerHTML = messages[index];
+    document.getElementById("msg2").innerHTML = messages[index];
     index++;
   }else{
     document.getElementById("screen2").classList.remove("active");
