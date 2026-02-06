@@ -66,17 +66,17 @@ button:hover {
 <script>
 // Messages
 let messages = [
-  "10 — I love your smile.",
-  "9 — I love how you make every day brighter.",
-  "8 — I love our late-night talks.",
-  "7 — I love how kind your heart is.",
-  "6 — I love every memory we create together.",
-  "5 — I love how you believe in me.",
-  "4 — I love your laugh.",
-  "3 — I love the way you make life beautiful.",
-  "2 — I love being with you.",
-  "1 — The biggest reason: Because you are YOU.",
-  "Happy Birthday ❤️ I love you today, tomorrow, and always."
+  "10 — I love your smile, Momo baby.",
+  "9 — I love how you make every day brighter, Momo baby.",
+  "8 — I love our late-night talks, Momo baby.",
+  "7 — I love how kind your heart is, Momo baby.",
+  "6 — I love every memory we create together, Momo baby.",
+  "5 — I love how you believe in me, Momo baby.",
+  "4 — I love your laugh, Momo baby.",
+  "3 — I love the way you make life beautiful, Momo baby.",
+  "2 — I love being with you, Momo baby.",
+  "1 — The biggest reason: Because you are YOU, Momo baby.",
+  "Happy Birthday, Momo baby ❤️ I love you today, tomorrow, and always."
 ];
 
 // Images to cycle through
@@ -92,7 +92,7 @@ function nextMessage(){
     msgDiv.innerHTML = messages[index];
     setTimeout(() => { msgDiv.style.opacity = 1; }, 50);
 
-    // Show image with fade-in, cycling through the 4 images
+    // Show image with fade-in, cycling through the images
     let img = document.getElementById("image");
     let currentImage = images[index % images.length];
     img.src = currentImage;
