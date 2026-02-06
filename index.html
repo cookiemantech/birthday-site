@@ -64,43 +64,44 @@ button:hover {
 <img id="image" src="">
 
 <script>
-// Messages and corresponding images
+// Messages
 let messages = [
-  { text: "10 — I love your smile.", img: "smile.jpg" },
-  { text: "9 — I love how you make every day brighter.", img: "sunshine.jpg" },
-  { text: "8 — I love our late-night talks.", img: "night_talk.jpg" },
-  { text: "7 — I love how kind your heart is.", img: "kindness.jpg" },
-  { text: "6 — I love every memory we create together.", img: "memories.jpg" },
-  { text: "5 — I love how you believe in me.", img: "support.jpg" },
-  { text: "4 — I love your laugh.", img: "laugh.jpg" },
-  { text: "3 — I love the way you make life beautiful.", img: "beautiful_life.jpg" },
-  { text: "2 — I love being with you.", img: "together.jpg" },
-  { text: "1 — The biggest reason: Because you are YOU.", img: "you.jpg" },
-  { text: "Happy Birthday ❤️ I love you today, tomorrow, and always.", img: "happy_bday.jpg" }
+  "10 — I love your smile.",
+  "9 — I love how you make every day brighter.",
+  "8 — I love our late-night talks.",
+  "7 — I love how kind your heart is.",
+  "6 — I love every memory we create together.",
+  "5 — I love how you believe in me.",
+  "4 — I love your laugh.",
+  "3 — I love the way you make life beautiful.",
+  "2 — I love being with you.",
+  "1 — The biggest reason: Because you are YOU.",
+  "Happy Birthday ❤️ I love you today, tomorrow, and always."
 ];
+
+// Images to cycle through
+let images = ["image.jpg", "cat1.jpg", "cat2.jpg", "cat3.jpg"];
 
 let index = 0;
 
 function nextMessage(){
   if(index < messages.length){
-    let msgObj = messages[index];
-    
-    // Fade in message
     let msgDiv = document.getElementById("message");
     msgDiv.style.opacity = 0;
-    msgDiv.innerHTML = msgObj.text;
+    msgDiv.innerHTML = messages[index];
     setTimeout(() => { msgDiv.style.opacity = 1; }, 50);
 
-    // Fade in image
+    // Cycle images
     let img = document.getElementById("image");
+    let currentImage = images[index % images.length];
+    img.src = currentImage;
     img.style.display = "block";
     img.style.opacity = 0;
-    img.src = msgObj.img;
     setTimeout(() => { img.style.opacity = 1; }, 50);
 
     index++;
 
-    // If last message, disable button
+    // Disable button on last message
     if(index === messages.length){
       document.getElementById("nextBtn").disabled = true;
       document.getElementById("nextBtn").innerText = "All done ❤️";
